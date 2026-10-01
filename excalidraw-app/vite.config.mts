@@ -11,8 +11,10 @@ import { woff2BrowserPlugin } from "../scripts/woff2/woff2-vite-plugins";
 export default defineConfig(({ mode }) => {
   // To load .env variables
   const envVars = loadEnv(mode, `../`);
+  const baseUrl = envVars.VITE_APP_BASE_URL || "/";
   // https://vitejs.dev/config/
   return {
+    base: baseUrl,
     server: {
       port: Number(envVars.VITE_APP_PORT || 3000),
       // open the browser
@@ -237,7 +239,7 @@ export default defineConfig(({ mode }) => {
               type: "image/png",
             },
             {
-              src: "apple-touch-icon.png",
+              src: "apple-touch-icon.png`,
               type: "image/png",
               sizes: "180x180",
             },
@@ -252,21 +254,21 @@ export default defineConfig(({ mode }) => {
               type: "image/png",
             },
           ],
-          start_url: "/",
+          start_url: baseUrl,
           id: "excalidraw",
           display: "standalone",
           theme_color: "#121212",
           background_color: "#ffffff",
           file_handlers: [
             {
-              action: "/",
+              action: baseUrl,
               accept: {
                 "application/vnd.excalidraw+json": [".excalidraw"],
               },
             },
           ],
           share_target: {
-            action: "/web-share-target",
+            action: `${baseUrl}web-share-target`,
             method: "POST",
             enctype: "multipart/form-data",
             params: {
@@ -284,32 +286,32 @@ export default defineConfig(({ mode }) => {
           },
           screenshots: [
             {
-              src: "/screenshots/virtual-whiteboard.png",
+              src: `${baseUrl}screenshots/virtual-whiteboard.png`,
               type: "image/png",
               sizes: "462x945",
             },
             {
-              src: "/screenshots/wireframe.png",
+              src: `${baseUrl}screenshots/wireframe.png`,
               type: "image/png",
               sizes: "462x945",
             },
             {
-              src: "/screenshots/illustration.png",
+              src: `${baseUrl}screenshots/illustration.png`,
               type: "image/png",
               sizes: "462x945",
             },
             {
-              src: "/screenshots/shapes.png",
+              src: `${baseUrl}screenshots/shapes.png`,
               type: "image/png",
               sizes: "462x945",
             },
             {
-              src: "/screenshots/collaboration.png",
+              src: `${baseUrl}screenshots/collaboration.png`,
               type: "image/png",
               sizes: "462x945",
             },
             {
-              src: "/screenshots/export.png",
+              src: `${baseUrl}screenshots/export.png`,
               type: "image/png",
               sizes: "462x945",
             },
